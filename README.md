@@ -5,7 +5,7 @@ Go scheduler lets you put work on a queue that will perform the job given when t
 a free worker in the worker pool.
 
 #### Examples
-Examples can be found [here](examples/main.go) as well.
+Examples can be found [here](examples/scheduler/main.go) as well.
 
 ```
 // Job implements the Performer interface.
