@@ -4,6 +4,9 @@
 Go scheduler lets you put work on a queue that will perform the job given when there's
 a free worker in the worker pool.
 
+#### Missing things
+- Handling panics
+
 #### Examples
 Examples can be found [here](examples/scheduler/main.go) as well.
 
