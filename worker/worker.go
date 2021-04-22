@@ -24,7 +24,8 @@ func New(workerPool chan chan job.Performer) Worker {
 func (w Worker) Start() {
 	go func() {
 		for {
-			// Register the work channel on the worker pool.
+			// Register the work channel on the worker pool,
+			// will be readded each time it's ready to accept work.
 			w.WorkerPool <- w.JobChannel
 
 			select {

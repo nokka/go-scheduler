@@ -24,7 +24,7 @@ type scheduler struct {
 	queue chan job.Performer
 }
 
-// Run will setup as many workers as allowed.
+// Run will setup as many workers as allowed, will run just once.
 func (s *scheduler) Run() {
 	for i := 0; i < s.maxWorkers; i++ {
 		worker := worker.New(s.workerPool)
@@ -41,8 +41,8 @@ func (s *scheduler) dispatch() {
 		case j := <-s.queue:
 			// Got a job request on the job queue.
 			go func(j job.Performer) {
-				// Obtain a worker channel from the pool, will stall
-				// until a worker is available.
+				// Obtain a worker channel from the pool, will stall until a worker is available.
+				// This means that multiple go routines can be stalling simultaneously waiting for a worker.
 				worker := <-s.workerPool
 
 				// Send the job to be executed on the worker we received.
